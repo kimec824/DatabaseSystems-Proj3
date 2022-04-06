@@ -171,8 +171,49 @@ Four eduom_CreateObject(
     
     /* Error check whether using not supported functionality by EduOM */
     if(ALIGNED_LENGTH(length) > LRGOBJ_THRESHOLD) ERR(eNOTSUPPORTED_EDUOM);
-    
-    
+    //Object 삽입을 위해 필요한 자유 공간의 크기 계산
+    neededSpace = sizeof(ObjectHdr) + length + sizeof(SlottedPageSlot);
+    //Object를 삽입할 page를 선정
+    if(nearObj!=NULL){
+    //파라미터로 주어진 nearObj가 NULL이 아닌 경우
+        //nearObj가 저장된 page에 여유 공간이 있는 경우
+        //pid를 가지고 slottedpagehdr를 구해서 apage 변수에 넣는다.
+        //catObjforFile을 어떻게 순회? 일단 catEntry를 찾아야함.
+        nearPid.pageNo = nearObj->pageNo;
+        nearPid.volNo = nearObj->volNo;
+        // for(int i=0;i<)
+        // if(nearPid)
+            //해당 page를 object를 삽입한 page로 선정함
+            //선정된 page를 현재 available space list에서 삭제함
+            //필요시 선정된 page를 compact 함
+        //nearObj가 저장된 page에 여유 공간이 없는 경우
+            //새로운 page를 할당 받아 object를 삽입할 page로 선정함
+            //선정된 page의 header를 초기화함
+            //선정된 page를 file 구성 page들로 이루어진 list에서 nearObj가 저장된 page로 삽입함
+    }
+    else{
+    //파라미터로 주어진 nearObj가 NULL인 경우
+        //Object 삽입을 윟 필요한 자유 공간의 크기에 알맞은 available space list가 존재하는 경우
+            //해당 available space list의 첫번째 page를 object를 삽입할 page로 선정함
+            //선정된 page를 현재 available space list에서 삭제함
+            //필요시 선정된 page를 compact 함
+        //Object 삽입을 윟 필요한 자유 공간의 크기에 알맞은 available space list가 존재하지 않는 경우
+            //file의 마지막 page에 여유 공간이 있는 경우
+                //File의 마지막 page를 object를 삽입할 page로 선정함
+                //필요시 선정된 pae를 compact 함
+            //file의 마지막 page에 여유 공간이 없는 경우
+                //새로운 page를 할당 받아 object를 삽입할 page로 선정함
+                //선정된 page의 header를 초기화함
+                //선정된 page를 file의 구성 page들로 이루어진 list에서 마지막 page로 삽입함
+    }
+        
+    //선정된 page에 object를 삽입함
+        //Object의 header를 갱신함
+        //선정한 page의 continuous free area에 object를 복사함
+        //Slot array의 빈 slot 또는 새로운 slot 한 개를 할당 받아 복사한 object의 식별을 위한 정보를 저장함
+        //page의 header를 갱신함
+        //page를 알맞은 available space list에 삽입함
+    //삽입된 object의 ID를 반환함
     
     return(eNOERROR);
     

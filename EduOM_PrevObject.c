@@ -79,7 +79,12 @@ Four EduOM_PrevObject(
     Object *obj;		/* a pointer to the Object */
     SlottedPage *catPage;	/* buffer page containing the catalog object */
     sm_CatOverlayForData *catEntry; /* overlay structure for catalog object access */
-
+    PageID  prevpageID;
+    SlottedPage *prevpage;
+    PageID lastpid;
+    PageNo lastpageNo;
+    SlottedPage *lastpage;
+    PageID catpid;
 
 
     /*@ parameter checking */
@@ -87,7 +92,66 @@ Four EduOM_PrevObject(
     
     if (prevOID == NULL) ERR(eBADOBJECTID_OM);
 
-    
+    //파라미터로 주어진 curOID가 NULL인 경우
+    if(curOID==NULL){
+        //File의 마지막 page의 slot array 상에서의 마지막 object ID를 반환함
+        //catpage에 대한 정보 지정
+        //catObjForFile이 들어있는 page를 catPage 포인터에 입력
+        //get train에서 오류발생
+        catpid.pageNo=catObjForFile->pageNo;
+        catpid.volNo=catObjForFile->volNo;
+        BfM_GetTrain(&catpid, (char **)&catPage, PAGE_BUF);
+        GET_PTR_TO_CATENTRY_FOR_DATA(catObjForFile, catPage, catEntry);
+
+        //catEntry에서 마지막 page의 pageno 찾아 lastpageNo에 할당
+        lastpageNo=catEntry->lastPage;
+        //pageno와 catObjForFile의 volno 이용해서 마지막 page 포인터 lastpage에 할당
+        lastpid.pageNo = lastpageNo;
+        lastpid.volNo = catObjForFile->volNo;
+        BfM_GetTrain(&lastpid, (char **)&lastpage, PAGE_BUF);
+        //해당 포인터의 마지막 object ID를 prevOID에 입력
+        prevOID->pageNo = lastpid.pageNo;
+        prevOID->volNo = lastpid.volNo;
+        prevOID->slotNo = lastpage->header.nSlots-1;
+        prevOID->unique = lastpage->slot[-(prevOID->slotNo)].unique;
+        // objHdr=lastpage->data + lastpage->slot[-(prevOID->slotNo)].offset;
+    }
+    //파라미터로 주어진 curOID가 NULL이 아닌 경우    
+    else{
+        pid.pageNo=curOID->pageNo;
+        pid.volNo=curOID->volNo;
+        BfM_GetTrain(&pid,(char **)&apage,PAGE_BUF);
+        //curOID에 대응하는 object를 탐색함
+        obj = apage->data + apage->slot[-(curOID->slotNo-1)].offset;
+        //Slot array 상에서, 탐색한 object의 이전 objet의 ID를 반환함
+        //탐색한 object가 page의 첫번째 object인 경우
+        if(curOID->slotNo==0){
+            if(apage->header.prevPage==-1){
+                //탐색한 object가 file의 첫번째 page의 첫번째 object인 경우
+                //EOS를 반환
+                return EOS;
+            }
+            //이전 page의 마지막 object의 ID를 반환
+            //이전 page의 포인터 필요
+            prevpageID.volNo=curOID->volNo;
+            prevpageID.pageNo=apage->header.prevPage;
+            BfM_GetTrain(&prevpageID, (char **)&prevpage, PAGE_BUF);
+            prevOID->pageNo = prevpageID.pageNo;
+            prevOID->volNo = prevpageID.volNo;
+            prevOID->slotNo = prevpage->header.nSlots-1;
+            prevOID->unique = prevpage->slot[-(prevOID->slotNo)].unique;
+            objHdr=prevpage->data+prevpage->slot[-(prevOID->slotNo)].offset;
+        }
+        //첫번째 object가 아닐 경우
+        else{
+            //obj(cur object)의 이전 object 반환
+            prevOID->pageNo=curOID->pageNo;
+            prevOID->volNo=curOID->volNo;
+            prevOID->slotNo=curOID->slotNo-1;
+            prevOID->unique=apage->slot[-(prevOID->slotNo)].unique;
+            objHdr=apage->data+apage->slot[-(prevOID->slotNo)].offset;
+        }
+    }
 
     return(EOS);
     

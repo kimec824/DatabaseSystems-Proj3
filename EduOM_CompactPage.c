@@ -86,8 +86,60 @@ Four EduOM_CompactPage(
     Four   len;			/* length of object + length of ObjectHdr */
     Two    lastSlot;		/* last non empty slot */
     Two    i;			/* index variable */
+    Four   datalen;
 
+    //파라미터로 주어진 slotNo가 NIL(-1)이 아닌 경우
+    if(slotNo!=NIL){
+        //slotNo에 대응하는 object를 제외한 page의 모든 object들을 데이터 영역의 가장 앞부분부터 연속되게 저장함
+        //i를 0부터 apage의 nSlot만큼 돌면서 앞 object의 마지막 부분으로 offset을 설정함.
+        //앞 object의 마지막 부분 = sizeof(ObjectHdr) + alignedLen = len 
+        apageDataOffset=0;
+        len=0;
+        for(i=0;i<apage->header.nSlots;i++){
+            if(i!=slotNo){
+                apage->slot[-i].offset=apageDataOffset + len;
+                if(obj->header.length%4==0)
+                    datalen=obj->header.length;
+                else if(obj->header.length%4==1)
+                    datalen=obj->header.length+3;
+                else if(obj->header.length%4==2)
+                    datalen=obj->header.length+2;
+                else if(obj->header.length%4==3)
+                    datalen=obj->header.length+1;
+                len=sizeof(ObjectHdr)+datalen;
+                apageDataOffset=apage->slot[-i].offset;
+            }
+            else{
+                continue;
+            }
+            
+        }
+        //slotNo에 대응하는 object를 데이터 영역 상에서의 마지막 object로 저장함
+        apage->slot[-slotNo].offset=apageDataOffset+len;
+    }
     
+    else{
+        //파라미터로 주어진 slotNo가 NIL(-1)인 경우
+        //page의 모든 object들을 데이터 영역의 가장 앞부분부터 연속되게 저장함
+        for(i=0;i<apage->header.nSlots;i++){
+            apage->slot[-i].offset=apageDataOffset + len;
+            if(obj->header.length%4==0)
+                datalen=obj->header.length;
+            else if(obj->header.length%4==1)
+                datalen=obj->header.length+3;
+            else if(obj->header.length%4==2)
+                datalen=obj->header.length+2;
+            else if(obj->header.length%4==3)
+                datalen=obj->header.length+1;
+            len=sizeof(ObjectHdr)+datalen;
+            apageDataOffset=apage->slot[-i].offset;
+        }
+    }
+
+
+    //pageheader를 갱신함
+    apage->header.free += apage->header.unused;
+    apage->header.unused=0;
 
     return(eNOERROR);
     

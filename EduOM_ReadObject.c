@@ -97,6 +97,7 @@ Four EduOM_ReadObject(
     SlottedPage	*apage;		/* pointer to the buffer of the page  */
     Object	*obj;		/* pointer to the object in the slotted page */
     Four	offset;		/* offset of the object in the page */
+    Four    i;
 
     
     
@@ -108,8 +109,28 @@ Four EduOM_ReadObject(
     
     if (buf == NULL) ERR(eBADUSERBUF_OM);
 
-    
-
+    //파라미터로 주어진 oid를 이용하여 object에 접근함
+    pid.pageNo=oid->pageNo;
+    pid.volNo=oid->volNo;
+    BfM_GetTrain(&pid,(char **)&apage,PAGE_BUF);
+    //삭제할 object에 대응하는 Slot을 찾음
+    for(i=0;i<apage->header.nSlots;i++){
+        if(apage->slot[-i].unique==oid->unique){
+            offset=apage->slot[-i].offset;
+            break;
+        }
+    }
+    obj=apage->data + offset;
+    //파라미터로 주어진 start 및 length를 고려하여 접근한 object의 데이터를 읽음
+    //object의 데이터 영역 상에서 start에 대응하는 offset에서 부터 length만큼의 데이터를 읽음
+    //length가 REMAINDER인 경우, 데이터를 끝까지 읽음
+    if(length==REMAINDER){
+        length=obj->header.length;
+    }
+    for(i=0;i<length;i++){
+            buf[i]=obj->data[start+i];
+    }
+    BfM_FreeTrain(&pid, PAGE_BUF);
     return(length);
     
 } /* EduOM_ReadObject() */
