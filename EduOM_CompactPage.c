@@ -87,17 +87,26 @@ Four EduOM_CompactPage(
     Two    lastSlot;		/* last non empty slot */
     Two    i;			/* index variable */
     Four   datalen;
-
+    Two    originOffset;
+    Object *originObj;
+    Object *prevObj;
+    Two prevOffset;
+    Two prevLength;
+    Two myNewOffset;
+    Object *me;
+    
+    
+    apageDataOffset=0;
+    len=0;
     //파라미터로 주어진 slotNo가 NIL(-1)이 아닌 경우
     if(slotNo!=NIL){
         //slotNo에 대응하는 object를 제외한 page의 모든 object들을 데이터 영역의 가장 앞부분부터 연속되게 저장함
         //i를 0부터 apage의 nSlot만큼 돌면서 앞 object의 마지막 부분으로 offset을 설정함.
         //앞 object의 마지막 부분 = sizeof(ObjectHdr) + alignedLen = len 
-        apageDataOffset=0;
-        len=0;
         for(i=0;i<apage->header.nSlots;i++){
             if(i!=slotNo){
                 apage->slot[-i].offset=apageDataOffset + len;
+                obj=apage->data[apage->slot[-i].offset];
                 if(obj->header.length%4==0)
                     datalen=obj->header.length;
                 else if(obj->header.length%4==1)
@@ -119,10 +128,38 @@ Four EduOM_CompactPage(
     }
     
     else{
-        //파라미터로 주어진 slotNo가 NIL(-1)인 경우
-        //page의 모든 object들을 데이터 영역의 가장 앞부분부터 연속되게 저장함
+        // 파라미터로 주어진 slotNo가 NIL(-1)인 경우
+        // page의 모든 object들을 데이터 영역의 가장 앞부분부터 연속되게 저장함
         for(i=0;i<apage->header.nSlots;i++){
-            apage->slot[-i].offset=apageDataOffset + len;
+            if(apage->slot[-i].offset==EMPTYSLOT){
+                printf("skip %d\n",i);
+                continue;
+            }
+            // originOffset=apage->slot[-i].offset;
+            // apage->slot[-i].offset=apageDataOffset + len;
+            // // obj = (Object *)&(apage->data[apage->slot[-i].offset]);
+            // // originObj = (Object *)&(apage->data[originOffset]);
+            // obj = (Object *)&(apage->data[originOffset]);
+            // if(obj->header.length%4==0)
+            //     datalen=obj->header.length;
+            // else if(obj->header.length%4==1)
+            //     datalen=obj->header.length+3;
+            // else if(obj->header.length%4==2)
+            //     datalen=obj->header.length+2;
+            // else if(obj->header.length%4==3)
+            //     datalen=obj->header.length+1;
+            // len=sizeof(ObjectHdr)+datalen;
+            // apageDataOffset=apage->slot[-i].offset;
+            Four tempOffset;
+            obj = (Object *)&(apage->data[apage->slot[-i].offset]);
+            tempOffset=apageDataOffset + len;
+            apage->data[tempOffset]=obj;
+            apage->slot[-i].offset=tempOffset;
+            // apage->slot[-i].offset=apageDataOffset+len;
+            // apage->data[apage->slot[-i].offset] = obj;
+            printf("%d  ",i);
+            printf("%d  ", apageDataOffset+len);
+            printf("%s\n",apage->data[apage->slot[-i].offset]);
             if(obj->header.length%4==0)
                 datalen=obj->header.length;
             else if(obj->header.length%4==1)
@@ -134,6 +171,28 @@ Four EduOM_CompactPage(
             len=sizeof(ObjectHdr)+datalen;
             apageDataOffset=apage->slot[-i].offset;
         }
+        // for(i=0;i<apage->header.nSlots;i++){
+        //     if(apage->slot[-i].offset==EMPTYSLOT){
+        //         continue;
+        //     }
+        //     if(i!=0){
+        //         prevOffset = apage->data[apage->slot[-(i-1)].offset];
+        //         prevObj = (Object *)&(prevOffset);
+        //         if(prevObj->header.length%4==0)
+        //             prevLength=prevObj->header.length;
+        //         else if(prevObj->header.length%4==1)
+        //             prevLength=prevObj->header.length+3;
+        //         else if(prevObj->header.length%4==2)
+        //             prevLength=prevObj->header.length+2;
+        //         else if(prevObj->header.length%4==3)
+        //             prevLength=prevObj->header.length+1;
+        //         me = (Object *)&(apage->data[apage->slot[-i].offset]);
+        //         myNewOffset=prevOffset+prevLength;
+        //         apage->data[myNewOffset] = me;
+
+        //         apage->slot[-i].offset=myNewOffset;
+        //     }
+        // }
     }
 
 
