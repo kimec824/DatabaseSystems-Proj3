@@ -200,50 +200,61 @@ Four eduom_CreateObject(
     neededSpace = sizeof(ObjectHdr) + alignedLen + sizeof(SlottedPageSlot);
     catpid.pageNo=catObjForFile->pageNo;
     catpid.volNo=catObjForFile->volNo;
-    BfM_GetTrain(&catpid, (char **)&catPage, PAGE_BUF);
+    e=BfM_GetTrain(&catpid, (char **)&catPage, PAGE_BUF);
+    if (e < 0) ERR(e);
     GET_PTR_TO_CATENTRY_FOR_DATA(catObjForFile, catPage, catEntry);
-    pid.pageNo=208;
-    pid.volNo=1000;
+    pid.pageNo=catEntry->firstPage;
+    pid.volNo=catEntry->fid.volNo;
     
-    BfM_GetTrain(&pid, (char **)&apage, PAGE_BUF);
+    e=BfM_GetTrain(&pid, (char **)&apage, PAGE_BUF);
+    if (e < 0) ERR(e);
     //Object를 삽입할 page를 선정
     if(nearObj!=NULL){
     //파라미터로 주어진 nearObj가 NULL이 아닌 경우
         pid.pageNo=nearObj->pageNo;
         pid.volNo=nearObj->volNo;
-        BfM_GetTrain(&pid,(char **)&apage, PAGE_BUF);
-        EduOM_CompactPage(apage, NIL);
+        e=BfM_GetTrain(&pid,(char **)&apage, PAGE_BUF);
+        if (e < 0) ERR(e);
+        e=EduOM_CompactPage(apage, NIL);
+        if (e < 0) ERR(e);
         if(SP_CFREE(apage)>=neededSpace){
             //nearObj가 저장된 page에 여유 공간이 있는 경우(needed space만큼의 공간이 있는 경우)
             //해당 page를 object를 삽입할 page로 선정함
             objpage=apage;
             //선정된 page를 현재 available space list에서 삭제함
-            om_RemoveFromAvailSpaceList(catObjForFile, &pid, apage);
+            e=om_RemoveFromAvailSpaceList(catObjForFile, &pid, apage);
+            if (e < 0) ERR(e);
         }
         else{
             //nearObj가 저장된 page에 여유 공간이 없는 경우
             //새로운 page를 할당 받아 object를 삽입할 page로 선정함
             eff=catEntry->eff;
-            RDsM_PageIdToExtNo(&pid, &firstExt);
-            RDsM_AllocTrains(nearObj->volNo, firstExt, &pid, eff, 1, 1, &newpid);
-            BfM_GetTrain(&newpid, (char **)&objpage, PAGE_BUF);
+            e=RDsM_PageIdToExtNo(&pid, &firstExt);
+            if (e < 0) ERR(e);
+            e=RDsM_AllocTrains(nearObj->volNo, firstExt, &pid, eff, 1, 1, &newpid);
+            if (e < 0) ERR(e);
+            e=BfM_GetTrain(&newpid, (char **)&objpage, PAGE_BUF);
+            if (e < 0) ERR(e);
             //선정된 page의 header를 초기화함->뭘..?
             objpage->header.fid=catEntry->fid;
-            objpage->header.flags=2;
+            // objpage->header.flags=2;
             objpage->header.free=0;
             objpage->header.nextPage=-1;
             objpage->header.nSlots=0;
             objpage->header.pid=newpid;
             objpage->header.prevPage=nearObj->pageNo;
+            // objpage->header.prevPage=-1;
             objpage->header.reserved=0;
             objpage->header.spaceListNext=-1;
-            objpage->header.spaceListPrev=-1;///////
+            objpage->header.spaceListPrev=-1;
             objpage->header.unused=0;
-            // om_GetUnique(&newpid, &newUnique);
-            // objpage->header.unique=newUnique;
-            // objpage->header.uniqueLimit=newUnique;
+            objpage->header.unique=0;
+            objpage->header.uniqueLimit=0;
+            objpage->slot[0].offset=EMPTYSLOT;
+            SET_PAGE_TYPE(objpage, SLOTTED_PAGE_TYPE);
             //선정된 page를 file 구성 page들로 이루어진 list에서 nearObj가 저장된 page의 다음 page로 삽입함
-            om_FileMapAddPage(catObjForFile, &pid, &newpid);
+            e=om_FileMapAddPage(catObjForFile, &pid, &newpid);
+            if (e < 0) ERR(e);
         }
     }
     else{
@@ -254,8 +265,10 @@ Four eduom_CreateObject(
                 noAvailableSpace = 0;
                 newpid.pageNo=catEntry->availSpaceList10;
                 newpid.volNo=catpid.volNo;
-                BfM_GetTrain(&newpid,(char **)&objpage, PAGE_BUF);
-                om_RemoveFromAvailSpaceList(catObjForFile, &newpid, objpage);
+                e=BfM_GetTrain(&newpid,(char **)&objpage, PAGE_BUF);
+                if (e < 0) ERR(e);
+                e=om_RemoveFromAvailSpaceList(catObjForFile, &newpid, objpage);
+                if (e < 0) ERR(e);
             }
         }
         if(neededSpace<SP_30SIZE && noAvailableSpace){
@@ -263,8 +276,10 @@ Four eduom_CreateObject(
                 noAvailableSpace = 0;
                 newpid.pageNo=catEntry->availSpaceList20;
                 newpid.volNo=catpid.volNo;
-                BfM_GetTrain(&newpid,(char **)&objpage, PAGE_BUF);
-                om_RemoveFromAvailSpaceList(catObjForFile, &newpid, objpage);
+                e=BfM_GetTrain(&newpid,(char **)&objpage, PAGE_BUF);
+                if (e < 0) ERR(e);
+                e=om_RemoveFromAvailSpaceList(catObjForFile, &newpid, objpage);
+                if (e < 0) ERR(e);
             }
         }
         if(neededSpace<SP_40SIZE && noAvailableSpace){
@@ -272,8 +287,10 @@ Four eduom_CreateObject(
                 noAvailableSpace = 0;
                 newpid.pageNo=catEntry->availSpaceList30;
                 newpid.volNo=catpid.volNo;
-                BfM_GetTrain(&newpid,(char **)&objpage, PAGE_BUF);
-                om_RemoveFromAvailSpaceList(catObjForFile, &newpid, objpage);
+                e=BfM_GetTrain(&newpid,(char **)&objpage, PAGE_BUF);
+                if (e < 0) ERR(e);
+                e=om_RemoveFromAvailSpaceList(catObjForFile, &newpid, objpage);
+                if (e < 0) ERR(e);
             }
         }
         if(neededSpace<SP_50SIZE && noAvailableSpace){
@@ -281,8 +298,10 @@ Four eduom_CreateObject(
                 noAvailableSpace = 0;
                 newpid.pageNo=catEntry->availSpaceList40;
                 newpid.volNo=catpid.volNo;
-                BfM_GetTrain(&newpid,(char **)&objpage, PAGE_BUF);
-                om_RemoveFromAvailSpaceList(catObjForFile, &newpid, objpage);
+                e=BfM_GetTrain(&newpid,(char **)&objpage, PAGE_BUF);
+                if (e < 0) ERR(e);
+                e=om_RemoveFromAvailSpaceList(catObjForFile, &newpid, objpage);
+                if (e < 0) ERR(e);
             }
         }
         if(noAvailableSpace){
@@ -290,16 +309,20 @@ Four eduom_CreateObject(
                 noAvailableSpace = 0;
                 newpid.pageNo=catEntry->availSpaceList50;
                 newpid.volNo=catpid.volNo;
-                BfM_GetTrain(&newpid,(char **)&objpage, PAGE_BUF);
-                om_RemoveFromAvailSpaceList(catObjForFile, &newpid, objpage);
+                e=BfM_GetTrain(&newpid,(char **)&objpage, PAGE_BUF);
+                if (e < 0) ERR(e);
+                e=om_RemoveFromAvailSpaceList(catObjForFile, &newpid, objpage);
+                if (e < 0) ERR(e);
             }
         }
         //Object 삽입을 위해 필요한 자유 공간의 크기에 알맞은 available space list가 존재하지 않는 경우
         if(noAvailableSpace){
             lastpid.pageNo=catEntry->lastPage;
             lastpid.volNo=catpid.volNo;
-            BfM_GetTrain(&lastpid, (char **)lastpage, PAGE_BUF);
-            EduOM_CompactPage(lastpage, NIL);
+            e=BfM_GetTrain(&lastpid, (char **)lastpage, PAGE_BUF);
+            if (e < 0) ERR(e);
+            e=EduOM_CompactPage(lastpage, NIL);
+            if (e < 0) ERR(e);
             //file의 마지막 page에 여유 공간이 있는 경우
             if(SP_CFREE(lastpage)>=neededSpace){
                 //File의 마지막 page를 object를 삽입할 page로 선정함
@@ -309,26 +332,31 @@ Four eduom_CreateObject(
             else{
                 //새로운 page를 할당 받아 object를 삽입할 page로 선정함->get new train 써야하나?
                 eff=catEntry->eff;
-                RDsM_PageIdToExtNo(&lastpid, &firstExt);
-                RDsM_AllocTrains(lastpid.volNo, firstExt, &lastpid, eff, 1, 1, &newpid);
+                e=RDsM_PageIdToExtNo(&lastpid, &firstExt);
+                if (e < 0) ERR(e);
+                e=RDsM_AllocTrains(lastpid.volNo, firstExt, &lastpid, eff, 1, 1, &newpid);
+                if (e < 0) ERR(e);
                 // BfM_GetNewTrain()
                 //선정된 page의 header를 초기화함
                 objpage->header.fid=catEntry->fid;
-                objpage->header.flags=2;
+                // objpage->header.flags=2;
                 objpage->header.free=0;
                 objpage->header.nextPage=-1;
                 objpage->header.nSlots=0;
                 objpage->header.pid=newpid;
-                objpage->header.prevPage=catEntry->lastPage;
+                objpage->header.prevPage=nearObj->pageNo;
+                // objpage->header.prevPage=-1;
                 objpage->header.reserved=0;
                 objpage->header.spaceListNext=-1;
-                objpage->header.spaceListPrev=-1;///////
+                objpage->header.spaceListPrev=-1;
                 objpage->header.unused=0;
-                // om_GetUnique(&newpid, &newUnique);
-                // objpage->header.unique=newUnique;
-                // objpage->header.uniqueLimit=newUnique;
+                objpage->header.unique=0;
+                objpage->header.uniqueLimit=0;
+                objpage->slot[0].offset=EMPTYSLOT;
+                SET_PAGE_TYPE(objpage, SLOTTED_PAGE_TYPE);
                 //선정된 page를 file의 구성 page들로 이루어진 list에서 마지막 page로 삽입함
-                om_FileMapAddPage(catObjForFile, &lastpid, &newpid);
+                e=om_FileMapAddPage(catObjForFile, &lastpid, &newpid);
+                if (e < 0) ERR(e);
             }
         }
     }
@@ -353,7 +381,8 @@ Four eduom_CreateObject(
 
     //빈 slot이 있는 경우: 빈 slot에 들어간다
     if(objSlot!=NULL){
-        om_GetUnique(objpage, &(objpage->slot[-objSlot].unique));
+        e=om_GetUnique(&(objpage->header.pid), &(objpage->slot[-objSlot].unique));
+        if (e < 0) ERR(e);
         // objpage->slot[-objSlot].unique=*newObjUnique;
         objpage->slot[-objSlot].offset=objpage->header.free;
         oid->slotNo=objSlot;
@@ -364,11 +393,8 @@ Four eduom_CreateObject(
         objpage->header.nSlots++;
         oid->slotNo=objpage->header.nSlots-1;
         objpage->slot[-oid->slotNo].offset=objpage->header.free;
-        om_GetUnique(&(objpage->header.pid), &(objpage->slot[-oid->slotNo].unique));
-        // objpage->slot[-(objpage->header.nSlots-1)].unique=*newObjUnique;
-        // newSlot->unique=*newObjUnique;
-        // newSlot->offset=objpage->header.free;
-        // objpage->slot[-(objpage->header.nSlots-1)]=*newSlot;
+        e=om_GetUnique(&(objpage->header.pid), &(objpage->slot[-(oid->slotNo)].unique));
+        if (e < 0) ERR(e);
     }
     // objpage->header.free=&newObject;
     newObject = (Object *)&(objpage->data[objpage->slot[-oid->slotNo].offset]);
@@ -386,15 +412,16 @@ Four eduom_CreateObject(
     //page의 header를 갱신함
     objpage->header.free+=sizeof(ObjectHdr)+alignedLen;
     //page를 알맞은 available space list에 삽입함
-    om_PutInAvailSpaceList(catObjForFile, &(objpage->header.pid), objpage);
+    e=om_PutInAvailSpaceList(catObjForFile, &(objpage->header.pid), objpage);
+    if (e < 0) ERR(e);
 
     //삽입된 object의 ID를 반환함
     oid->pageNo=objpage->header.pid.pageNo;
     oid->unique=objpage->slot[-(oid->slotNo)].unique;
     oid->volNo=catpid.volNo;
-    BfM_SetDirty(objpage, PAGE_BUF);
-    BfM_FreeTrain(objpage,PAGE_BUF);
-    BfM_FreeTrain(catPage, PAGE_BUF);
+    // BfM_SetDirty(objpage, PAGE_BUF);
+    // BfM_FreeTrain(objpage,PAGE_BUF);
+    // BfM_FreeTrain(catPage, PAGE_BUF);
 
     return(eNOERROR);
     

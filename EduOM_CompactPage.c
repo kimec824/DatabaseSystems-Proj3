@@ -98,6 +98,7 @@ Four EduOM_CompactPage(
     
     apageDataOffset=0;
     len=0;
+
     //파라미터로 주어진 slotNo가 NIL(-1)이 아닌 경우
     if(slotNo!=NIL){
         //slotNo에 대응하는 object를 제외한 page의 모든 object들을 데이터 영역의 가장 앞부분부터 연속되게 저장함
@@ -132,7 +133,7 @@ Four EduOM_CompactPage(
         // page의 모든 object들을 데이터 영역의 가장 앞부분부터 연속되게 저장함
         for(i=0;i<apage->header.nSlots;i++){
             if(apage->slot[-i].offset==EMPTYSLOT){
-                printf("skip %d\n",i);
+                // printf("skip %d\n",i);
                 continue;
             }
             // originOffset=apage->slot[-i].offset;
@@ -140,26 +141,25 @@ Four EduOM_CompactPage(
             // // obj = (Object *)&(apage->data[apage->slot[-i].offset]);
             // // originObj = (Object *)&(apage->data[originOffset]);
             // obj = (Object *)&(apage->data[originOffset]);
-            // if(obj->header.length%4==0)
-            //     datalen=obj->header.length;
-            // else if(obj->header.length%4==1)
-            //     datalen=obj->header.length+3;
-            // else if(obj->header.length%4==2)
-            //     datalen=obj->header.length+2;
-            // else if(obj->header.length%4==3)
-            //     datalen=obj->header.length+1;
-            // len=sizeof(ObjectHdr)+datalen;
-            // apageDataOffset=apage->slot[-i].offset;
-            Four tempOffset;
+            
+
+            // Four tempOffset;
+            // obj = (Object *)&(apage->data[apage->slot[-i].offset]);
+            // tempOffset=apageDataOffset + len;
+            // apage->data[tempOffset]=obj;
+            // apage->slot[-i].offset=tempOffset;
+            originOffset=apage->slot[-i].offset;
+            apage->slot[-i].offset=apageDataOffset + len;
+            // obj = (Object *)&(apage->data[apage->slot[-i].offset]);
+            originObj = (Object *)&(apage->data[originOffset]);
             obj = (Object *)&(apage->data[apage->slot[-i].offset]);
-            tempOffset=apageDataOffset + len;
-            apage->data[tempOffset]=obj;
-            apage->slot[-i].offset=tempOffset;
+            obj->header=originObj->header;
+            memcpy(obj->data, originObj->data, originObj->header.length);
             // apage->slot[-i].offset=apageDataOffset+len;
             // apage->data[apage->slot[-i].offset] = obj;
-            printf("%d  ",i);
-            printf("%d  ", apageDataOffset+len);
-            printf("%s\n",apage->data[apage->slot[-i].offset]);
+            // printf("%d  ",i);
+            // printf("%d  ", apageDataOffset+len);
+            // printf("%s\n",apage->data[apage->slot[-i].offset]);
             if(obj->header.length%4==0)
                 datalen=obj->header.length;
             else if(obj->header.length%4==1)
@@ -169,6 +169,7 @@ Four EduOM_CompactPage(
             else if(obj->header.length%4==3)
                 datalen=obj->header.length+1;
             len=sizeof(ObjectHdr)+datalen;
+            // memcpy(obj, originObj, len);
             apageDataOffset=apage->slot[-i].offset;
         }
         // for(i=0;i<apage->header.nSlots;i++){
@@ -197,7 +198,7 @@ Four EduOM_CompactPage(
 
 
     //pageheader를 갱신함
-    apage->header.free += apage->header.unused;
+    apage->header.free = apageDataOffset + len;
     apage->header.unused=0;
 
     return(eNOERROR);
