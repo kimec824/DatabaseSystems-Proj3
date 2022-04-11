@@ -115,6 +115,9 @@ Four EduOM_PrevObject(
         prevOID->slotNo = lastpage->header.nSlots-1;
         prevOID->unique = lastpage->slot[-(prevOID->slotNo)].unique;
         // objHdr=lastpage->data + lastpage->slot[-(prevOID->slotNo)].offset;
+        BfM_FreeTrain(&catpid, PAGE_BUF);
+        BfM_FreeTrain(&lastpid, PAGE_BUF);
+
     }
     //파라미터로 주어진 curOID가 NULL이 아닌 경우    
     else{
@@ -129,6 +132,7 @@ Four EduOM_PrevObject(
             if(apage->header.prevPage==-1){
                 //탐색한 object가 file의 첫번째 page의 첫번째 object인 경우
                 //EOS를 반환
+                BfM_FreeTrain(&pid, PAGE_BUF);
                 return EOS;
             }
             //이전 page의 마지막 object의 ID를 반환
@@ -141,6 +145,7 @@ Four EduOM_PrevObject(
             prevOID->slotNo = prevpage->header.nSlots-1;
             prevOID->unique = prevpage->slot[-(prevOID->slotNo)].unique;
             objHdr=prevpage->data+prevpage->slot[-(prevOID->slotNo)].offset;
+            BfM_FreeTrain(&prevpageID,PAGE_BUF);
         }
         //첫번째 object가 아닐 경우
         else{
@@ -151,6 +156,7 @@ Four EduOM_PrevObject(
             prevOID->unique=apage->slot[-(prevOID->slotNo)].unique;
             objHdr=apage->data+apage->slot[-(prevOID->slotNo)].offset;
         }
+        BfM_FreeTrain(&pid, PAGE_BUF);
     }
 
     return(EOS);

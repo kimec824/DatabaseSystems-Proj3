@@ -111,11 +111,14 @@ Four EduOM_NextObject(
         firstpid.pageNo = firstpageNo;
         firstpid.volNo = catObjForFile->volNo;
         BfM_GetTrain(&firstpid, (char **)&firstpage, PAGE_BUF);
-        //해당 포인터의 마지막 object ID를 nextOID에 입력
+        //해당 포인터의 첫번째 object ID를 nextOID에 입력
         nextOID->pageNo = firstpid.pageNo;
         nextOID->volNo = firstpid.volNo;
         nextOID->slotNo = 0;
         nextOID->unique = firstpage->slot[0].unique;
+        objHdr=firstpage->data+firstpage->slot[0].offset;
+        BfM_FreeTrain(&catpid, PAGE_BUF);
+        BfM_FreeTrain(&firstpid, PAGE_BUF);
     }
     //파라미터로 주어진 curOID가 NULL이 아닌 경우    
     else{
@@ -132,8 +135,8 @@ Four EduOM_NextObject(
                 //EOS를 반환
                 return EOS;
             }
-            //이전 page의 첫번째 object의 ID를 반환
-            //이전 page의 포인터 필요
+            //다음 page의 첫번째 object의 ID를 반환
+            //다음 page의 포인터 필요
             nextpageID.volNo=curOID->volNo;
             nextpageID.pageNo=apage->header.nextPage;
             BfM_GetTrain(&nextpageID, (char **)&nextpage, PAGE_BUF);
@@ -142,8 +145,9 @@ Four EduOM_NextObject(
             nextOID->slotNo = 0;
             nextOID->unique = nextpage->slot[0].unique;
             objHdr=nextpage->data+nextpage->slot[0].offset;
+            BfM_FreeTrain(&nextpageID, PAGE_BUF);
         }
-        //첫번째 object가 아닐 경우
+        //마지막 object가 아닐 경우
         else{
             //obj(cur object)의 다음 object 반환
             nextOID->pageNo=curOID->pageNo;
@@ -152,6 +156,7 @@ Four EduOM_NextObject(
             nextOID->unique=apage->slot[-(nextOID->slotNo)].unique;
             objHdr=apage->data+apage->slot[-(nextOID->slotNo)].offset;
         }
+        BfM_FreeTrain(&pid, PAGE_BUF);
     }
 
 

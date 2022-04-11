@@ -523,7 +523,6 @@ Four eduom_DumpOnePage(
   Four e;         /* error number */
   SlottedPage *apage;     /* pointer to buffer holding the page */
 
-
   /*@ parameter checking */
   if (pid == NULL || pid->pageNo == NIL) ERR(eBADPAGEID_OM);
 

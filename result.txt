@@ -22,89 +22,172 @@ The object ( 208, 0 )  is inserted into the page
 *Test 1_2 : Test for EduOM_CreateObject() when a near object is not NULL
 ->Insert new objects into the page until the page is full
 
-The object ( 208, 1 )  is inserted into the page
-The object ( 208, 2 )  is inserted into the page
-The object ( 208, 3 )  is inserted into the page
-The object ( 208, 4 )  is inserted into the page
-The object ( 208, 5 )  is inserted into the page
-The object ( 208, 6 )  is inserted into the page
-The object ( 208, 7 )  is inserted into the page
-The object ( 208, 8 )  is inserted into the page
-The object ( 208, 9 )  is inserted into the page
-The object ( 208, 10 )  is inserted into the page
-The object ( 208, 11 )  is inserted into the page
-The object ( 208, 12 )  is inserted into the page
-The object ( 208, 13 )  is inserted into the page
-The object ( 208, 14 )  is inserted into the page
-The object ( 208, 15 )  is inserted into the page
-The object ( 208, 16 )  is inserted into the page
-The object ( 208, 17 )  is inserted into the page
-The object ( 208, 18 )  is inserted into the page
-The object ( 208, 19 )  is inserted into the page
-The object ( 208, 20 )  is inserted into the page
-The object ( 208, 21 )  is inserted into the page
-The object ( 208, 22 )  is inserted into the page
-The object ( 208, 23 )  is inserted into the page
-The object ( 208, 24 )  is inserted into the page
-The object ( 208, 25 )  is inserted into the page
-The object ( 208, 26 )  is inserted into the page
-The object ( 208, 27 )  is inserted into the page
-The object ( 208, 28 )  is inserted into the page
-The object ( 208, 29 )  is inserted into the page
-The object ( 208, 30 )  is inserted into the page
-The object ( 208, 31 )  is inserted into the page
-The object ( 208, 32 )  is inserted into the page
-The object ( 208, 33 )  is inserted into the page
-The object ( 208, 34 )  is inserted into the page
-The object ( 208, 35 )  is inserted into the page
-The object ( 208, 36 )  is inserted into the page
-The object ( 208, 37 )  is inserted into the page
-The object ( 208, 38 )  is inserted into the page
-The object ( 208, 39 )  is inserted into the page
-The object ( 208, 40 )  is inserted into the page
-The object ( 208, 41 )  is inserted into the page
-The object ( 208, 42 )  is inserted into the page
-The object ( 208, 43 )  is inserted into the page
-The object ( 208, 44 )  is inserted into the page
-The object ( 208, 45 )  is inserted into the page
-The object ( 208, 46 )  is inserted into the page
-The object ( 208, 47 )  is inserted into the page
-The object ( 208, 48 )  is inserted into the page
-The object ( 208, 49 )  is inserted into the page
-The object ( 208, 50 )  is inserted into the page
-The object ( 208, 51 )  is inserted into the page
-The object ( 208, 52 )  is inserted into the page
-The object ( 208, 53 )  is inserted into the page
-The object ( 208, 54 )  is inserted into the page
-The object ( 208, 55 )  is inserted into the page
-The object ( 208, 56 )  is inserted into the page
-The object ( 208, 57 )  is inserted into the page
-The object ( 208, 58 )  is inserted into the page
-The object ( 208, 59 )  is inserted into the page
-The object ( 208, 60 )  is inserted into the page
-The object ( 208, 61 )  is inserted into the page
-The object ( 208, 62 )  is inserted into the page
-The object ( 208, 63 )  is inserted into the page
-The object ( 208, 64 )  is inserted into the page
-The object ( 208, 65 )  is inserted into the page
-The object ( 208, 66 )  is inserted into the page
-The object ( 208, 67 )  is inserted into the page
-The object ( 208, 68 )  is inserted into the page
-The object ( 208, 69 )  is inserted into the page
-The object ( 208, 70 )  is inserted into the page
-The object ( 208, 71 )  is inserted into the page
-The object ( 208, 72 )  is inserted into the page
-The object ( 208, 73 )  is inserted into the page
-The object ( 208, 74 )  is inserted into the page
-The object ( 208, 75 )  is inserted into the page
-The object ( 208, 76 )  is inserted into the page
-The object ( 208, 77 )  is inserted into the page
-The object ( 208, 78 )  is inserted into the page
-The object ( 208, 79 )  is inserted into the page
-The object ( 208, 80 )  is inserted into the page
-The object ( 208, 81 )  is inserted into the page
-The object ( 208, 82 )  is inserted into the page
-The object ( 208, 83 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 1 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 2 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 3 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 4 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 5 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 6 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 7 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 8 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 9 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 10 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 11 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 12 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 13 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 14 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 15 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 16 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 17 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 18 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 19 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 20 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 21 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 22 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 23 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 24 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 25 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 26 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 27 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 28 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 29 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 30 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 31 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 32 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 33 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 34 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 35 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 36 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 37 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 38 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 39 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 40 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 41 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 42 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 43 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 44 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 45 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 46 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 47 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 48 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 49 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 50 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 51 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 52 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 53 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 54 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 55 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 56 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 57 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 58 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 59 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 60 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 61 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 62 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 63 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 64 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 65 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 66 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 67 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 68 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 69 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 70 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 71 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 72 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 73 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 74 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 75 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 76 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 77 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 78 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 79 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 80 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 81 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 82 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 83 )  is inserted into the page
 
 ---------------------------------- Result ----------------------------------
 +------------------------------------------------------------+
@@ -208,92 +291,178 @@ The object ( 208, 83 )  is inserted into the page
 *Test 1_3 : Test for EduOM_CreateObeject() until a new page is needed
 ->Insert new objects into the page until the 2nd object of 3rd page is created
 
-The object ( 209, 0 )  is inserted into the page
-The object ( 209, 1 )  is inserted into the page
-The object ( 209, 2 )  is inserted into the page
-The object ( 209, 3 )  is inserted into the page
-The object ( 209, 4 )  is inserted into the page
-The object ( 209, 5 )  is inserted into the page
-The object ( 209, 6 )  is inserted into the page
-The object ( 209, 7 )  is inserted into the page
-The object ( 209, 8 )  is inserted into the page
-The object ( 209, 9 )  is inserted into the page
-The object ( 209, 10 )  is inserted into the page
-The object ( 209, 11 )  is inserted into the page
-The object ( 209, 12 )  is inserted into the page
-The object ( 209, 13 )  is inserted into the page
-The object ( 209, 14 )  is inserted into the page
-The object ( 209, 15 )  is inserted into the page
-The object ( 209, 16 )  is inserted into the page
-The object ( 209, 17 )  is inserted into the page
-The object ( 209, 18 )  is inserted into the page
-The object ( 209, 19 )  is inserted into the page
-The object ( 209, 20 )  is inserted into the page
-The object ( 209, 21 )  is inserted into the page
-The object ( 209, 22 )  is inserted into the page
-The object ( 209, 23 )  is inserted into the page
-The object ( 209, 24 )  is inserted into the page
-The object ( 209, 25 )  is inserted into the page
-The object ( 209, 26 )  is inserted into the page
-The object ( 209, 27 )  is inserted into the page
-The object ( 209, 28 )  is inserted into the page
-The object ( 209, 29 )  is inserted into the page
-The object ( 209, 30 )  is inserted into the page
-The object ( 209, 31 )  is inserted into the page
-The object ( 209, 32 )  is inserted into the page
-The object ( 209, 33 )  is inserted into the page
-The object ( 209, 34 )  is inserted into the page
-The object ( 209, 35 )  is inserted into the page
-The object ( 209, 36 )  is inserted into the page
-The object ( 209, 37 )  is inserted into the page
-The object ( 209, 38 )  is inserted into the page
-The object ( 209, 39 )  is inserted into the page
-The object ( 209, 40 )  is inserted into the page
-The object ( 209, 41 )  is inserted into the page
-The object ( 209, 42 )  is inserted into the page
-The object ( 209, 43 )  is inserted into the page
-The object ( 209, 44 )  is inserted into the page
-The object ( 209, 45 )  is inserted into the page
-The object ( 209, 46 )  is inserted into the page
-The object ( 209, 47 )  is inserted into the page
-The object ( 209, 48 )  is inserted into the page
-The object ( 209, 49 )  is inserted into the page
-The object ( 209, 50 )  is inserted into the page
-The object ( 209, 51 )  is inserted into the page
-The object ( 209, 52 )  is inserted into the page
-The object ( 209, 53 )  is inserted into the page
-The object ( 209, 54 )  is inserted into the page
-The object ( 209, 55 )  is inserted into the page
-The object ( 209, 56 )  is inserted into the page
-The object ( 209, 57 )  is inserted into the page
-The object ( 209, 58 )  is inserted into the page
-The object ( 209, 59 )  is inserted into the page
-The object ( 209, 60 )  is inserted into the page
-The object ( 209, 61 )  is inserted into the page
-The object ( 209, 62 )  is inserted into the page
-The object ( 209, 63 )  is inserted into the page
-The object ( 209, 64 )  is inserted into the page
-The object ( 209, 65 )  is inserted into the page
-The object ( 209, 66 )  is inserted into the page
-The object ( 209, 67 )  is inserted into the page
-The object ( 209, 68 )  is inserted into the page
-The object ( 209, 69 )  is inserted into the page
-The object ( 209, 70 )  is inserted into the page
-The object ( 209, 71 )  is inserted into the page
-The object ( 209, 72 )  is inserted into the page
-The object ( 209, 73 )  is inserted into the page
-The object ( 209, 74 )  is inserted into the page
-The object ( 209, 75 )  is inserted into the page
-The object ( 209, 76 )  is inserted into the page
-The object ( 209, 77 )  is inserted into the page
-The object ( 209, 78 )  is inserted into the page
-The object ( 209, 79 )  is inserted into the page
-The object ( 209, 80 )  is inserted into the page
-The object ( 209, 81 )  is inserted into the page
-The object ( 209, 82 )  is inserted into the page
-The object ( 209, 83 )  is inserted into the page
-The object ( 210, 0 )  is inserted into the page
-The object ( 210, 1 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 0 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 1 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 2 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 3 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 4 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 5 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 6 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 7 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 8 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 9 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 10 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 11 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 12 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 13 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 14 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 15 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 16 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 17 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 18 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 19 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 20 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 21 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 22 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 23 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 24 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 25 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 26 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 27 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 28 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 29 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 30 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 31 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 32 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 33 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 34 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 35 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 36 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 37 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 38 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 39 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 40 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 41 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 42 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 43 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 44 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 45 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 46 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 47 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 48 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 49 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 50 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 51 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 52 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 53 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 54 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 55 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 56 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 57 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 58 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 59 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 60 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 61 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 62 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 63 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 64 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 65 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 66 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 67 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 68 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 69 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 70 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 71 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 72 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 73 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 74 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 75 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 76 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 77 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 78 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 79 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 80 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 81 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 82 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  209}The object ( 209, 83 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  210}The object ( 210, 0 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  210}The object ( 210, 1 )  is inserted into the page
 
 
 
@@ -619,7 +788,8 @@ The object ( 208, 20 )  is destroyed from the page
 *Test 1_5 : Test for EduOM_CreateObject() when needing page compact
 ->Insert a new object into the page which needs page compact
 
-The object ( 208, 2 )  is inserted into the page
+fixed counter is less than 0!!!
+trainId = {1000,  208}The object ( 208, 2 )  is inserted into the page
 
 
 
@@ -1502,4 +1672,3 @@ EduOM_TestModule_OBJECT_NUM_0
 
 
 ****************************** TEST#4, EduOM_NextObject. ******************************
-LRDS_Dismount failed!!!

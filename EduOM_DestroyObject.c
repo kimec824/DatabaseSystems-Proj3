@@ -110,33 +110,23 @@ Four EduOM_DestroyObject(
     //삭제할 object가 저장된 page를 현재 available space list에서 삭제함
     om_RemoveFromAvailSpaceList(catObjForFile, &pid, apage);
     //삭제할 object에 대응하는 Slot을 찾음
-    for(i=0;i<apage->header.nSlots;i++){
-        if(apage->slot[-i].unique==oid->unique){
-            offset=apage->slot[-i].offset;
-            break;
-        }
-    }
+    // for(i=0;i<apage->header.nSlots;i++){
+    //     if(apage->slot[-i].unique==oid->unique){
+    //         offset=apage->slot[-i].offset;
+    //         break;
+    //     }
+    // }
+    offset = apage->slot[-oid->slotNo].offset;
     //object 시작 포인터 + offset 가 obj
     //alignedLen
     obj = apage->data+offset;
-    if(obj->header.length%4==0){
-        alignedLen=obj->header.length;
-    }
-    if(obj->header.length%4==1){
-        alignedLen=obj->header.length + 3;
-    }
-    if(obj->header.length%4==2){
-        alignedLen=obj->header.length + 2;
-    }
-    if(obj->header.length%4==3){
-        alignedLen=obj->header.length + 1;
-    }
+    alignedLen=ALIGNED_LENGTH(obj->header.length);
     //삭제할 object에 대응하는 slot을 사용하지 않는 빈 slot으로 설정함
-    apage->slot[-i].offset=EMPTYSLOT;
+    apage->slot[-oid->slotNo].offset=EMPTYSLOT;
     //page header를 갱신함
     //마지막 slot인가?
     //-> nSlot-1 = i인가?
-    if(apage->header.nSlots-1==i)
+    if(apage->header.nSlots-1==oid->slotNo)
     {
         apage->header.nSlots--;
     }
@@ -154,7 +144,7 @@ Four EduOM_DestroyObject(
         //page를 file 구성 page들로 이루어진 list에서 삭제함
         om_FileMapDeletePage(catObjForFile, &pid);
         //해당 page를 deallocate함
-        Util_getElementFromPool(dlPool, dlHead);
+        Util_getElementFromPool(dlPool, &dlElem);
         //pFid를 구하려면 해당 page를 포함하는 file을 알아내서 첫번째 page의 pid를 알아야함.
         //slottedpagehder에서 계속 prevPage를 가서 더이상 전이 없을때까지 가면 그게 첫번째 page.
         //prevPage는 pageno만을 가지고 있는데 pageno로 slottedpage의 포인터를 찾을 수가 있나?
@@ -162,17 +152,17 @@ Four EduOM_DestroyObject(
         //pageno, volno를 가지고 slottedpage의 pointer를 찾는다.
         //그 포인터가 가리키는 prevPage가 null인지 검사한다. 아니라면 ...반복
         //맞다면 그 slottedpage의 pageno를 pfid로 한다.
-        SlottedPage *temp;
-        temp=apage;
-        pFid.volNo=oid->volNo;
-        while(temp->header.prevPage!=-1){
-            pFid.pageNo=temp->header.prevPage;
-            BfM_GetTrain(&pFid, (char **)&temp, PAGE_BUF);
-        }
-        dlHead->type = DL_PAGE;
-        dlHead->elem.pFid=pFid;
-        dlHead->elem.pid=pid;
-        dlHead->next=-1;
+        // SlottedPage *temp;
+        // temp=apage;
+        // pFid.volNo=oid->volNo;
+        // while(temp->header.prevPage!=-1){
+        //     pFid.pageNo=temp->header.prevPage;
+        //     BfM_GetTrain(&pFid, (char **)&temp, PAGE_BUF);
+        // }
+        dlElem->next = dlHead->next;
+        dlElem->elem.pid = pid;
+        dlElem->type = DL_PAGE;
+        dlHead->next = dlElem;
         // dlHead=dlElem;
     }
     //삭제된 object가 page의 유일한 object가 아니거나, 해당 page가 file의 첫번째 page인 경우
